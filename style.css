@@ -1,0 +1,165 @@
+body {
+    background: linear-gradient(180deg,blue,lightblue);
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .surface{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    background: rgb(189, 90, 9);
+    z-index: -1;
+    box-shadow: 1px 1px 10px 5px inset rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+  }
+  
+  #container {
+    /* position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -40%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+  
+  #pole {
+    width: 10px;
+    height: 500px;
+    border-radius: 50px;
+    background-color: rgb(248, 136, 9);
+    box-shadow: -5px 0 3px inset rgba(255, 255, 255, 0.5);
+    z-index: 2;
+  }
+  
+  .flag-unit {
+    width: 2px;
+    height: 2px;
+    background: #FFF;
+    box-shadow: 5px 15px 10px rgba(255, 255, 255, 0.1);
+  }
+
+  .flag-unit.wave{
+    animation: vertical 1s infinite;
+  }
+  
+  #pole, .column {
+    transform-origin: bottom;
+    transition: 1s ease-in-out;
+    /* animation: sway 5s infinite; */
+  }
+  
+  #flag {
+    display: flex;
+    position: relative;
+    top: 130px;
+    width: 9px;
+    overflow: hidden;
+  }
+
+  #flag.hoist{
+    animation: 5s flag 1 linear forwards;
+  }
+  
+
+  @keyframes flag {
+    0%{
+        top: 130px;
+    }
+    100%{
+        top: -194px;
+    }
+  }
+  
+  
+button{
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+    border: 2px solid black;
+    outline: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background: rgb(20, 115, 224);
+    cursor: pointer;
+    z-index: 5;
+}
+
+
+  @keyframes vertical {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+  
+    25% {
+      transform: translate(calc(var(--displacement)*-2), calc(var(--displacement)*-1));
+    }
+  
+    75% {
+      transform: translate(calc(var(--displacement)*2), calc(var(--displacement)*4));
+    }
+  
+  }
+  
+  @keyframes sway {
+    0%, 100% {
+      transform: rotate(-5deg)
+    }
+  
+    50% {
+      transform: rotate(-3deg)
+    }
+  }
+  
+  @media only screen and (max-width:768px) {
+    button{
+        bottom: 20px;
+        left: 50px;
+        padding: 5px 10px;
+        font-size: 16px;
+        
+    }
+    .surface{
+      height:20vh;
+    }
+    body {
+      min-height: 80vh;
+    }
+    #container{
+      min-height: 93vh;
+    }
+  }
+  
+  @media only screen and (max-width:375px) {
+    button{
+        bottom: 20px;
+        left: 20px;
+        padding: 5px 10px;
+        font-size: 16px;
+        
+    }
+    #container{
+      min-height: 91vh;
+    }
+    #pole {
+      height: 470px;
+    }
+    #flag {
+      display: flex;
+      position: relative;
+      top: 100px;
+      width: 9px;
+      overflow: hidden;
+    }
+  }
